@@ -43,7 +43,7 @@ describe(__filename, function () {
 
   describe('GET /users', function () {
     it('should return a list of users based on query', function (done) {
-      dbStub.returns({
+      dbStub.yields(null, {
         count: 2,
         list: [{}, {}]
       });
