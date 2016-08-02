@@ -5,6 +5,8 @@ var expect = require('chai').expect
   , supertest = require('supertest')
   , proxyquire = require('proxyquire');
 
+require('sinon-as-promised')(require('bluebird'));
+
 describe(__filename, function () {
   var dbStub, request;
 
@@ -41,7 +43,7 @@ describe(__filename, function () {
 
   describe('GET /users', function () {
     it('should return a list of users based on query', function (done) {
-      dbStub.yields(null, {
+      dbStub.returns({
         count: 2,
         list: [{}, {}]
       });
